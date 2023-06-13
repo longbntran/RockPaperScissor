@@ -33,26 +33,45 @@ function playGame(userChoice,computerChoice) {
     }
 }
 function play(e) {
-    // console.log(this.textContent);
     const playerSelection = this.textContent;
     const computerSelection = getComputerChoice();
     const result = playGame(playerSelection, computerSelection);
-    const resultElement = document.getElementById("result");
-    resultElement.textContent = result;
+    let humanScore = parseInt(document.getElementById("human-score").textContent);
+    let computerScore = parseInt(document.getElementById("computer-score").textContent);
+    if (Math.max(humanScore, computerScore) === 5) {
+        let resultElement = document.getElementById("result");
+        resultElement.style.color = "blue";
+        let winner = humanScore > computerScore ? "The Hooman" : "The Mighty Comp";
+        resultElement.textContent = resultElement.textContent + "And the winner is: " + winner + `. Score: ${humanScore} - ${computerScore}`;
+    }
+    console.log(humanScore,computerScore)
+    // const resultElement = document.getElementById("result");
+    // resultElement.textContent = result;
     if (result === "You Win!") {
-        resultElement.style.color = "green";
+        // resultElement.style.color = "green";
+        humanScore += 1;
+        document.getElementById("human-score").textContent = `${humanScore}`;
     }
     else if (result === "You Lose!") {
-        resultElement.style.color = "red";
+        // resultElement.style.color = "red";
+        computerScore += 1;
+        document.getElementById("computer-score").textContent = `${computerScore}`;
     }
     else if (result === "It's a Tie!") {
-        resultElement.style.color = "black";
+        // resultElement.style.color = "black";
     }
    
 }
+
+
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener("click", play, {capture: false}));
 
+
+
+// Display the running score, and announce a winner of the game once one player reaches 5 points.
+// You will likely have to refactor (rework/rewrite) your original code to make it work for this. 
+// That’s OK! Reworking old code is an important part of a programmer’s life.
 
 
 // In our UI, the player should be able to play the game by clicking on buttons rather 
@@ -62,6 +81,3 @@ buttons.forEach(button => button.addEventListener("click", play, {capture: false
 // playRound function with the correct playerSelection every time a button is clicked. (you can keep
 //      the console.logs for this step)
 // Add a div for displaying results and change all of your console.logs into DOM methods.
-// Display the running score, and announce a winner of the game once one player reaches 5 points.
-// You will likely have to refactor (rework/rewrite) your original code to make it work for this. 
-// That’s OK! Reworking old code is an important part of a programmer’s life.
