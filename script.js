@@ -2,45 +2,39 @@ const RPS = ["ROCK", "PAPER", "SCISSOR"];
 function getComputerChoice() {
     return RPS[Math.floor(Math.random() * RPS.length)];
 }
-function playGame(playerSelection, computerSelection) {
-    const userChoice = playerSelection.toUpperCase();
-    const computerChoice = computerSelection.toUpperCase();
-    const possibleChoice = ["You Win!","You Lose!","It's a Tie!"];
+function playGame(userChoice,computerChoice) {
+    const possibleResult = ["You Win!","You Lose!","It's a Tie!"];
     if (userChoice === computerChoice) {
-        return(possibleChoice[2]);
+        return(possibleResult[2]);
     }
     else if (userChoice === "ROCK") {
         if (computerChoice === "SCISSOR") {
-            return(possibleChoice[0]);
+            return(possibleResult[0]);
         }
         else {
-            return(possibleChoice[1]);
+            return(possibleResult[1]);
         }
     }
     else if (userChoice === "PAPER") {
         if (computerChoice === "ROCK") {
-            return(possibleChoice[0]);
+            return(possibleResult[0]);
         }
         else {
-            return(possibleChoice[1]);
+            return(possibleResult[1]);
         }
     }
     else if (userChoice === "SCISSOR") {
         if (computerChoice === "PAPER") {
-            return(possibleChoice[0]);
+            return(possibleResult[0]);
         }
         else {
-            return(possibleChoice[1]);
+            return(possibleResult[1]);
         }
     }
 }
-
-const buttons = document.querySelectorAll(".button");
-// const rockButton = document.getElementById("rock-button");
-// const paperButton = document.getElementById("paper-button");
-// const scissorsButton = document.getElementById("scissors-button");
 function play(e) {
-    const playerSelection = e.target.textContent;
+    // console.log(this.textContent);
+    const playerSelection = this.textContent;
     const computerSelection = getComputerChoice();
     const result = playGame(playerSelection, computerSelection);
     const resultElement = document.getElementById("result");
@@ -54,12 +48,12 @@ function play(e) {
     else if (result === "It's a Tie!") {
         resultElement.style.color = "black";
     }
-    else {
-        resultElement.style.color = "black";
-    };
-    e.stopPropagation();
+   
 }
-buttons.forEach(button => {button.addEventListener("click", play); });
+const buttons = document.querySelectorAll("button");
+buttons.forEach(button => button.addEventListener("click", play, {capture: false}));
+
+
 
 // In our UI, the player should be able to play the game by clicking on buttons rather 
 // than typing their answer in a prompt.
