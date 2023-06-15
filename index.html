@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to ROCK PAPER SCISSOR!!!</h1>
-        <h2>You vs the Comp! Best of 5 wins!</h2>
+    <div id="announcing" style="font-size: 50px"></div>
+    <div class="score_board">
+        <div class="scoreboard_player user">You</div>
+        <div class="scoreboard_player computer">Computer</div>
+        <div class="scoreboard_score" id ="user_score" onchange="declare">0</div>
+        <div class="scoreboard_score" id="computer_score">0</div>
+    </div>
+    <div class="control_panel">
         <div>
-            <button id="rock-button">ROCK</button>
-            <button id="paper-button">PAPER</button>
-            <button id="scissor-button">SCISSOR</button>
+            <span class="icon">&#9994</span>
+            <button class="rps rock" >ROCK</button>
         </div>
         <div>
-            <div>
-                <div class="human-cs" style="display:flex; justify-content: space-evenly; align-items: baseline;">
-                    <h2>Hooman Score: </h2>
-                    <h3 id="human-score">0</h3>
-                </div>
-                <div class="computer-cs" style="display:flex; justify-content: space-evenly; align-items: baseline;">
-                    <h2>Computer Score: </h2>
-                    <h3 id="computer-score">0</h3>
-                </div>
-            </div>
-            <h1 id="result"></h1>
+            <span class="icon">&#9995</span>
+            <button class="rps paper" >PAPER</button>
+        </div>
+        <div>
+            <span class="icon">&#9996</span>
+            <button class="rps scissor">SCISSOR</button>
         </div>
     </div>
-    
+    <div id="alert">
+      </div>
 </body>
-<script src="./script.js" >
+<script src="./script.js">
 </script>
 </html>
