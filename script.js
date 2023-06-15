@@ -32,7 +32,7 @@ function playGame(userChoice,computerChoice) {
         }
     }
 }
-function updateScore(result) {
+function updateScore(result,compChoice) {
     switch(result) {
         case "You Win!":
             userScore += 1;
@@ -45,12 +45,12 @@ function updateScore(result) {
     }
     console.log(result,userScore, computerScore);
     if (userScore<5 && computerScore<5) {
-        announcing.textContent = result;
+        announcing.textContent = "theCompchose: "+compChoice+"."+result;
         tempUserScoreInHtml.textContent = userScore;
         tempCompScoreInHtml.textContent = computerScore;
     }
     if (userScore===5) {
-        announcing.textContent = result;
+        announcing.textContent = "theCompchose: "+compChoice+"."+result;
         tempUserScoreInHtml.textContent = userScore;
         tempCompScoreInHtml.textContent = computerScore;
         const alertMessage = document.getElementById("alert");
@@ -60,18 +60,15 @@ function updateScore(result) {
         The winner is You ${userScore} against the Computer ${computerScore}.`;
     }
     else if (computerScore===5) {
-        announcing.textContent = result;
+        announcing.textContent = "theCompchose: "+compChoice+"."+result;
         tempUserScoreInHtml.textContent = userScore;
         tempCompScoreInHtml.textContent = computerScore;
         const alertMessage = document.getElementById("alert");
         alertMessage.style.display = "block";
         alertMessage.innerHTML = `
         <span class="closebtn" onclick="document.location.reload()">&times;</span>
-        The winner is You ${userScore} against the Computer ${computerScore}.`
+        The winner is the Comp ${computerScore} against You ${userScore}.`
     }
-}
-function checkWinner(userScore, computerScore) {
-    
 }
 const announcing = document.getElementById("announcing");
 const tempUserScoreInHtml = document.getElementById("user_score");
@@ -83,5 +80,5 @@ allButton.forEach(button => button.addEventListener("click", () => {
     const userChoice = button.textContent;
     const computerChoice = getComputerChoice();
     const result = playGame(userChoice, computerChoice);
-    updateScore(result);
+    updateScore(result,computerChoice);
 }));
